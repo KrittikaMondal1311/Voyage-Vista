@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Write &mdash; Voyage Vista</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+<style>
+  .form-wrap { max-width: var(--max-w); margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+  .form-wrap h1 { font-family: var(--serif); font-size: 2.2rem; margin: 0 0 0.5rem; }
+  .form-wrap > p.help { color: var(--text-dim); margin: 0 0 2.5rem; max-width: 60ch; }
+  label { display: block; font-size: 0.85rem; color: var(--sea); margin: 1.4rem 0 0.4rem; }
+  label.first { margin-top: 0; }
+  input, textarea {
+    width: 100%; background: var(--ink-raised); border: 1px solid var(--line);
+    color: var(--text); font-family: var(--sans); font-size: 1rem;
+    padding: 0.7rem 0.85rem; border-radius: 3px;
+  }
+  textarea { min-height: 160px; line-height: 1.6; resize: vertical; }
+  .hint { color: var(--text-dim); font-size: 0.8rem; margin-top: 0.3rem; }
+  .actions { margin-top: 2rem; display: flex; gap: 1rem; align-items: center; }
+  button {
+    background: var(--marigold); color: var(--ink); border: none;
+    font-family: var(--sans); font-weight: 500; font-size: 0.95rem;
+    padding: 0.75rem 1.4rem; border-radius: 3px; cursor: pointer;
+  }
+  button:hover { background: var(--marigold-dim); }
+  .status { font-size: 0.9rem; color: var(--sea); }
+  .output {
+    margin-top: 2.5rem; background: var(--ink-raised); border: 1px solid var(--line);
+    border-radius: 3px; padding: 1rem; display: none;
+  }
+  .output.visible { display: block; }
+  .output pre {
+    white-space: pre-wrap; word-break: break-word; font-size: 0.8rem;
+    color: var(--text-dim); margin: 0.5rem 0 0; max-height: 220px; overflow: auto;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="mark">Voyage <span>Vista</span></a>
+  <nav>
+    <a href="index.html">Journal</a>
+    <a href="admin.html">Write</a>
+  </nav>
+</header>
+
+<div class="form-wrap">
+  <h1>Write a new entry</h1>
+  <p class="help">
+    Fill this in, then click <strong>Download updated posts.js</strong>. Replace the
+    <code>data/posts.js</code> file in your project with the one that downloads, then
+    redeploy (or refresh, if you're running this locally). This page doesn't save
+    anything on its own &mdash; it just builds the file for you.
+  </p>
+
+  <form id="post-form">
+    <label class="first" for="title">Title</label>
+    <input id="title" type="text" placeholder="e.g. Three Days on the Coast" required />
+
+    <label for="place">Place line</label>
+    <input id="place" type="text" placeholder="e.g. Havelock \u2192 Neil Island" />
+
+    <label for="date">Date label</label>
+    <input id="date" type="text" placeholder="e.g. March 2026" />
+
+    <label for="excerpt">Short excerpt (shows on the homepage)</label>
+    <textarea id="excerpt" style="min-height:70px" placeholder="One or two sentences that hook a reader in."></textarea>
+
+    <label for="cover">Cover image URL (optional)</label>
+    <input id="cover" type="text" placeholder="https://..." />
+
+    <label for="body">Body</label>
+    <textarea id="body" placeholder="Write your post here. Leave a blank line between paragraphs."></textarea>
+    <p class="hint">Each blank line becomes a new paragraph.</p>
+
+    <div class="actions">
+      <button type="submit">Download updated posts.js</button>
+      <span class="status" id="status"></span>
+    </div>
+  </form>
+
+  <div class="output" id="output">
+    <label style="margin:0 0 0.4rem;">Preview of the new entry</label>
+    <pre id="preview"></pre>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <span>Voyage Vista</span>
+  <a href="index.html">&larr; Back to the journal</a>
+</footer>
+
+<script src="data/posts.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
